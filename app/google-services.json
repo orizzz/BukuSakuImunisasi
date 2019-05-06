@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "399555130722",
+    "firebase_url": "https://buku-saku-imunisasi-cerdas.firebaseio.com",
+    "project_id": "buku-saku-imunisasi-cerdas",
+    "storage_bucket": "buku-saku-imunisasi-cerdas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399555130722:android:3e2194ffad18569e",
+        "android_client_info": {
+          "package_name": "com.gregetdev.oris.busa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399555130722-c9lk1ecvsri09n5rnumgr687j115b9vd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1PpiJdb56Q9n1F__lTa2qdQRKgZkBHgc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

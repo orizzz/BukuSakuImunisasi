@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".Fragment.Profile.Fragment_Alarm">
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp" android:id="@+id/alarm_layout">
+
+        <TextView
+                android:id="@+id/Alarm_jam_text_view"
+                android:text="00:00"
+                android:textSize="34sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="32dp"/>
+        <TextView
+                android:id="@+id/Alarm_keterangan"
+                android:text="Imunisasi"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/Alarm_jam_text_view"
+                app:layout_constraintBottom_toBottomOf="@+id/Alarm_jam_text_view"
+                app:layout_constraintStart_toEndOf="@+id/Alarm_jam_text_view"
+                android:layout_marginStart="16dp"
+
+        />
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Alarm_switch" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.505" android:textOn="On" android:textOff="Off"/>
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
