@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import com.gregetdev.oris.busa.model.AlarmModel
 import com.gregetdev.oris.busa.model.DataImunisasiModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_add_data_bayi.*
@@ -79,7 +80,7 @@ class AddDataBayi : AppCompatActivity() {
 
 
         backButton_addDataBayi.setOnClickListener() {
-            val intent = Intent(this@AddDataBayi, Home::class.java)
+            val intent = Intent(this@AddDataBayi, DataBayi::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
@@ -173,7 +174,7 @@ class AddDataBayi : AppCompatActivity() {
 
                     AddDataImunisasiAwal(key)
 
-                    val intent = Intent(this@AddDataBayi, Home::class.java)
+                    val intent = Intent(this@AddDataBayi, DataBayi::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                     Toast.makeText(this@AddDataBayi, "Data telah ditambahkan", Toast.LENGTH_LONG).show()
@@ -187,26 +188,43 @@ class AddDataBayi : AppCompatActivity() {
 
     private fun AddDataImunisasiAwal(key: String) {
         val Data_imunisasi = database.getReference("/Data Imunisasi/$key")
+        val Alarm = database.getReference("/Alarm/$key")
         //val imunisasiKEY = Data_imunisasi.push().key
 
-        var Year = calendar.get(Calendar.YEAR)
+        val Year = calendar.get(Calendar.YEAR)
         var Months = calendar.get(Calendar.MONTH)
         var Day = calendar.get(Calendar.DAY_OF_MONTH)
 
         Log.d("Calendar","Tgl Imunisasai, $Day/$Months/$Year")
 
-        Data_imunisasi.child("Hepatitis B")
-            .setValue(DataImunisasiModel("",TglImunisasi(0),"","0"))
-        Data_imunisasi.child("BCG, Polio 1")
-            .setValue(DataImunisasiModel("",TglImunisasi(1),"","1"))
-        Data_imunisasi.child("DPT-HB-Hib 1, Polio 2")
-            .setValue(DataImunisasiModel("",TglImunisasi(2),"","2"))
-        Data_imunisasi.child("DPT-HB-Hib 2, Polio 3")
-            .setValue(DataImunisasiModel("",TglImunisasi(3),"","3"))
-        Data_imunisasi.child("DPT-HB-Hib 3, Polio 4, IPV")
-            .setValue(DataImunisasiModel("",TglImunisasi(4),"","4"))
-        Data_imunisasi.child("Campak")
-            .setValue(DataImunisasiModel("",TglImunisasi(9),"","9"))
+        Data_imunisasi.run {
+            child("Hepatitis B")
+                .setValue(DataImunisasiModel("Hepatitis B",TglImunisasi(0),"Belum","0"))
+            child("BCG, Polio 1")
+                .setValue(DataImunisasiModel("BCG, Polio 1",TglImunisasi(1),"Belum","1"))
+            child("DPT-HB-Hib 1, Polio 2")
+                .setValue(DataImunisasiModel("DPT-HB-Hib 1, Polio 2",TglImunisasi(2),"Belum","2"))
+            child("DPT-HB-Hib 2, Polio 3")
+                .setValue(DataImunisasiModel("PT-HB-Hib 2, Polio 3",TglImunisasi(3),"Belum","3"))
+            child("DPT-HB-Hib 3, Polio 4, IPV")
+                .setValue(DataImunisasiModel("DPT-HB-Hib 3, Polio 4, IPV",TglImunisasi(4),"Belum","4"))
+            child("Campak")
+                .setValue(DataImunisasiModel("Campak",TglImunisasi(9),"Belum","9"))
+        }
+        Alarm.run {
+            child("Hepatitis B")
+                .setValue(AlarmModel("Hepatitis B",TglImunisasi(0),"--:--",false,"1"))
+            child("BCG, Polio 1")
+                .setValue(AlarmModel("BCG, Polio 1",TglImunisasi(1),"--:--",false,"2"))
+            child("DPT-HB-Hib 1, Polio 2")
+                .setValue(AlarmModel("DPT-HB-Hib 1, Polio 2",TglImunisasi(2),"--:--",false,"3"))
+            child("DPT-HB-Hib 2, Polio 3")
+                .setValue(AlarmModel("PT-HB-Hib 2, Polio 3",TglImunisasi(3),"--:--",false,"4"))
+            child("DPT-HB-Hib 3, Polio 4, IPV")
+                .setValue(AlarmModel("DPT-HB-Hib 3, Polio 4, IPV",TglImunisasi(4),"--:--",false,"5"))
+            child("Campak")
+                .setValue(AlarmModel("Campak",TglImunisasi(9),"--:--",false,"6"))
+        }
     }
 
     private fun TglImunisasi(tambah: Int): String {

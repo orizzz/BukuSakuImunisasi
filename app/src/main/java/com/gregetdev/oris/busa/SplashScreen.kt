@@ -33,7 +33,7 @@ class SplashScreen : AppCompatActivity() {
                     } catch (e: InterruptedException) {
                         e.printStackTrace()
                     } finally {
-                        val intent = Intent(this@SplashScreen, Home::class.java)
+                        val intent = Intent(this@SplashScreen, HomeMenu::class.java)
                         startActivity(intent)
                         finish()
                     }

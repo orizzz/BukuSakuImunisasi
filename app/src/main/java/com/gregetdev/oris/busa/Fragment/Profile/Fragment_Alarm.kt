@@ -1,33 +1,25 @@
 package com.gregetdev.oris.busa.Fragment.Profile
 
 
-import android.app.Dialog
 import android.app.TimePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.TimePicker
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-
+import com.gregetdev.oris.busa.AlarmSet.AlarmNotification
+import com.gregetdev.oris.busa.AlarmSet.BroadcastReceiver
+import com.gregetdev.oris.busa.AlarmSet.SaveData
 import com.gregetdev.oris.busa.R
-import com.gregetdev.oris.busa.model.DataImunisasiModel
-import kotlinx.android.synthetic.main.activity_login.*
+import com.gregetdev.oris.busa.model.AlarmModel
 import kotlinx.android.synthetic.main.fragment_alarm.*
-import kotlinx.android.synthetic.main.view_alarm_list.*
 import kotlinx.android.synthetic.main.view_alarm_list.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,8 +31,9 @@ class Fragment_Alarm : Fragment() {
 
     private lateinit var database: FirebaseDatabase
 
-    private var bayiKey: String? = null
 
+    private var bayiKey: String? = null
+    val AlarmTime = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,10 +56,11 @@ class Fragment_Alarm : Fragment() {
         val key = bayiKey.toString()
         database = FirebaseDatabase.getInstance()
         val dataImunisasi = database.getReference("/Data Imunisasi/$key")
+        val load = SaveData(context!!)
+        Alarm_jam_text_view.text = readableTime(load.getHour(),load.getMinutes())
 
+        /*alarm_layout.isEnabled = Alarm_switch.isChecked*/
         Alarm_jam_text_view.setOnClickListener{
-            val AlarmTime = Calendar.getInstance()
-
 
             val SetTimePicker =
                 TimePickerDialog.OnTimeSetListener{view, hour,minute->
@@ -76,22 +70,7 @@ class Fragment_Alarm : Fragment() {
                         set(Calendar.MINUTE,minute)
                     }
 
-                    val Shour : String
-                    val Sminute : String
-
-                    if (hour in 0..9){
-                        Shour = "0$hour"
-                    } else {
-                        Shour = "$hour"
-                    }
-                    if (minute in 0..9){
-                        Sminute = "0$minute"
-                    } else {
-                        Sminute = "$minute"
-                    }
-
-
-                    Alarm_jam_text_view.text = "$Shour:$Sminute"
+                    Alarm_jam_text_view.text = readableTime(hour,minute)
                 }
 
             TimePickerDialog(
@@ -102,25 +81,61 @@ class Fragment_Alarm : Fragment() {
                 true
             ).show()
 
-
-
-
-
         }
 
-       /* TampilListAlarm(bayiKey)*/
+        Alarm_button.setOnClickListener {
+            /*CreateNotification()*/
+            Log.d("Alarm","${AlarmTime.get(Calendar.HOUR_OF_DAY)}:${AlarmTime.get(Calendar.MINUTE)}")
+
+            val saveData = SaveData(context!!)
+
+            saveData.SaveData(
+                AlarmTime.get(Calendar.HOUR_OF_DAY),
+                AlarmTime.get(Calendar.MINUTE)
+            )
+            AlarmNotification().setReminder(
+                activity!!,
+                BroadcastReceiver::class.java,
+                saveData.getHour(),
+                saveData.getMinutes()
+            )
+            Alarm_jam_text_view.alpha = 0.4f
+        }
+
+
+
+        TampilListAlarm(key)
 
     }
+    private fun readableTime(hour:Int,minute:Int): String {
+        val Shour : String
+        val Sminute : String
 
-    /*private fun TampilListAlarm(bayiKey: String?) {
-        val data_imunisasi = FirebaseDatabase.getInstance().getReference("/Data Imunisasi/$bayiKey")
-            .orderByChild("umurPemberian")
+        if (hour in 0..9){
+            Shour = "0$hour"
+        } else {
+            Shour = "$hour"
+        }
+        if (minute in 0..9){
+            Sminute = "0$minute"
+        } else {
+            Sminute = "$minute"
+        }
 
-        val options = FirebaseRecyclerOptions.Builder<DataImunisasiModel>()
-            .setQuery(data_imunisasi, DataImunisasiModel::class.java)
+        return "$Shour:$Sminute"
+    }
+
+
+
+    private fun TampilListAlarm(bayiKey: String?) {
+        val Alarm = FirebaseDatabase.getInstance().getReference("/Alarm/$bayiKey")
+            .orderByChild("urutan")
+
+        val options = FirebaseRecyclerOptions.Builder<AlarmModel>()
+            .setQuery(Alarm, AlarmModel::class.java)
             .build()
 
-        val adapterFirebase = object : FirebaseRecyclerAdapter<DataImunisasiModel, ListDataAlarmHolder>(options){
+        val adapterFirebase = object : FirebaseRecyclerAdapter<AlarmModel, ListDataAlarmHolder>(options){
 
             override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ListDataAlarmHolder {
                 val inflater = LayoutInflater.from(parent.context)
@@ -128,70 +143,11 @@ class Fragment_Alarm : Fragment() {
                 return ListDataAlarmHolder(view)
             }
 
-            override fun onBindViewHolder(holder: ListDataAlarmHolder, position: Int, model: DataImunisasiModel) {
+            override fun onBindViewHolder(holder: ListDataAlarmHolder, position: Int, model: AlarmModel) {
                 holder.mView.Alarm_keterangan.text = "Imunisasi \n${getRef(position).key.toString()}"
-
-                holder.mView.Alarm_jam_text_view.setOnClickListener{
-                    val AlarmTime = Calendar.getInstance()
-
-
-                    val SetTimePicker =
-                        TimePickerDialog.OnTimeSetListener{view, hour,minute->
-
-                            AlarmTime.run {
-                                set(Calendar.HOUR_OF_DAY,hour)
-                                set(Calendar.MINUTE,minute)
-                            }
-
-                            val Shour : String
-                            val Sminute : String
-
-                            if (hour in 0..9){
-                                Shour = "0$hour"
-                            } else {
-                                Shour = "$hour"
-                            }
-                            if (minute in 0..9){
-                                Sminute = "0$minute"
-                            } else {
-                                Sminute = "$minute"
-                            }
-
-
-                            holder.mView.Alarm_jam_text_view.text = "$Shour:$Sminute"
-                    }
-
-                    TimePickerDialog(
-                        activity,
-                        SetTimePicker,
-                        AlarmTime.get(Calendar.HOUR_OF_DAY),
-                        AlarmTime.get(Calendar.MINUTE),
-                        true
-                        ).show()
-
-
-
-
-
-                }
-
-                holder.mView.Alarm_switch.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
-                    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                        if (isChecked){
-                            return
-                        } else {
-                            if (!isChecked) {
-                                alarm_layout.setBackgroundColor(resources.getColor(R.color.Grey))
-                            }
-                        }
-                    }
-
-                })
-
-
+                holder.mView.Alarm_tgl.text = model.Tgl_alarm
 
             }
-
 
         }
 
@@ -199,7 +155,7 @@ class Fragment_Alarm : Fragment() {
         List_alarm_recylerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         List_alarm_recylerview.adapter = adapterFirebase
 
-    }*/
+    }
 
     companion object {
         @JvmStatic

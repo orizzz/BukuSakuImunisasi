@@ -7,6 +7,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="Beri_imunisasi">Beri Imunisasi Sesuai Jadwal Agar\nAnak Terlindung Dari Penyakit</string>
+    <string name="Tentang1">~ Aplikasi ini ditujukan kepada para orang tua yang memiliki Bayi, diharapkan dengan aplikasi ini pengguna dapat lebih mudah dalam pencatatan dan pengingat dalam melaksanakan imunisasi kepada anaknya.</string>
+    <string name="Tentang2">~ Aplikasi ini dibuat sebagai syarat sidang penulisan Ilmiah Jurusan Teknik Informatika</string>
+    <string name="Tentang3">~ Aplikasi ini dirancang dan dikembangkan oleh\n
+        Nama  : Oris Pratama\n
+        NPM   : 55416691\n
+        Kelas : 3IA18\n
+    </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

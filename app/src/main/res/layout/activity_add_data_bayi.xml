@@ -128,7 +128,8 @@
             android:layout_height="120dp" app:layout_constraintEnd_toEndOf="@+id/SelectPhotoButton"
             app:layout_constraintStart_toStartOf="@+id/SelectPhotoButton"
             app:layout_constraintTop_toTopOf="@+id/SelectPhotoButton"
-            app:layout_constraintBottom_toBottomOf="@+id/SelectPhotoButton" android:id="@+id/SelecetedImage_ImageVIew"/>
+            app:layout_constraintBottom_toBottomOf="@+id/SelectPhotoButton" android:id="@+id/SelecetedImage_ImageVIew"
+    />
 
     <com.eyalbira.loadingdots.LoadingDots
             android:layout_width="wrap_content"

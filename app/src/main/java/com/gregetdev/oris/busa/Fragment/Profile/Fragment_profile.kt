@@ -6,10 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
-import android.support.v7.widget.AlertDialogLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.gregetdev.oris.busa.BayiModel
-import com.gregetdev.oris.busa.Home
+import com.gregetdev.oris.busa.HomeMenu
 
 import com.gregetdev.oris.busa.R
 import com.gregetdev.oris.busa.model.DataImunisasiModel
@@ -92,14 +90,10 @@ class Fragment_profile : Fragment() {
         Profil_delete_actButton.setOnClickListener(){
 
             val builder = AlertDialog.Builder(it.context)
-            builder.setTitle("Hapus Data Bayi")
-            builder.setMessage("Apakah Anda Yakin Ingin Menghapus Data Bayi \"$NamaBayi\" ? ")
-            builder.setPositiveButton("HAPUS"){dialog, which ->
-                DeleteProfilBayi(key)
-            }
-            builder.setNegativeButton("TIDAK"){dialog, which ->
-                return@setNegativeButton
-            }
+                .setTitle("Hapus Data Bayi")
+                .setMessage("Apakah Anda Yakin Ingin Menghapus Data Bayi \"$NamaBayi\" ? ")
+                .setPositiveButton("HAPUS"){dialog, which -> DeleteProfilBayi(key) }
+                .setNegativeButton("TIDAK"){dialog, which -> return@setNegativeButton }
 
             val dialog: AlertDialog = builder.create()
             dialog.show()
@@ -113,13 +107,15 @@ class Fragment_profile : Fragment() {
     private fun DeleteProfilBayi(key: String) {
         val data_imunisasi = FirebaseDatabase.getInstance().getReference("/Data Imunisasi/$key")
         val data_bayi = FirebaseDatabase.getInstance().getReference("/Bayi/$key")
+        val data_alarm = FirebaseDatabase.getInstance().getReference("/Alarm/$key")
 
         data_bayi.removeValue().addOnCompleteListener {
 
             data_imunisasi.removeValue()
+            data_alarm.removeValue()
 
             Toast.makeText(context,"Data Bayi dihapus",Toast.LENGTH_SHORT).show()
-            val intent = Intent(context, Home::class.java)
+            val intent = Intent(context, HomeMenu::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
@@ -154,9 +150,30 @@ class Fragment_profile : Fragment() {
                 }
 
                 holder.mView.setOnClickListener(){
-
+                    QuestionPopUP(getRef(position).key.toString())
                 }
 
+            }
+
+            private fun QuestionPopUP(NamaImunisasi: String) {
+                val builder = AlertDialog.Builder(context!!)
+                    .setTitle("Imunisasi")
+                    .setMessage("Apakah Imunisasi \"$NamaImunisasi\" Sudah dilakukan ? ")
+                    .setPositiveButton("Sudah"){dialog, which ->  SetSudahImunisasi(NamaImunisasi)}
+                    .setNegativeButton("Belum"){dialog, which -> return@setNegativeButton }
+
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+            }
+
+            private fun SetSudahImunisasi(namaImunisasi: String) {
+                val data_imunisasi = FirebaseDatabase.getInstance()
+                    .getReference("/Data Imunisasi/$key/$namaImunisasi")
+
+                data_imunisasi.child("keterangan").setValue("Sudah")
+                    .addOnCompleteListener { Toast.makeText(activity,"Data Imunisasi Disimpan",Toast.LENGTH_LONG) }
+                    .addOnCanceledListener { Toast.makeText(activity,"Terjadi kesalahan, Silahkan coba lagi",Toast.LENGTH_LONG) }
+                startListening()
             }
 
             override fun startListening() {
@@ -181,6 +198,7 @@ class Fragment_profile : Fragment() {
             }
     }
 }
+
 
 class ListDataImunisasiHolder(var mView: View) : RecyclerView.ViewHolder(mView)
 

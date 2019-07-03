@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Profile_Bayi.ProfileV2">
+
+    <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize" android:id="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+            android:id="@+id/profil_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            android:tint="@android:color/white"
+            app:layout_constraintTop_toTopOf="@+id/toolbar" app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="@+id/toolbar" android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" android:layout_marginStart="16dp"/>
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:cardElevation="5dp"
+            app:cardCornerRadius="5dp"
+            android:id="@+id/ProfilBayi_cardView" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:id="@+id/Profil_Image"
+                    android:background="@drawable/rounded_select_photo_button"
+                    android:layout_marginTop="36dp" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="28dp"/>
+
+            <com.github.clans.fab.FloatingActionMenu
+                    android:id="@+id/Profil_actButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:menu_icon="@drawable/ic_write_white_24dp"
+                    app:menu_colorNormal="@color/colorAccent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:menu_labels_textColor="@color/White"
+                    app:menu_labels_colorNormal="@color/Black"
+                    app:menu_backgroundColor="@color/Grey"
+            >
+                <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/Profil_edit_actButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:fab_label="Edit Profil Bayi"
+                        android:src="@drawable/ic_write_white_24dp"
+                        app:fab_size="mini"
+                        app:fab_colorNormal="@color/colorAccent"
+                />
+
+                <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/Profil_delete_actButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:fab_label="Hapus Profil Bayi"
+                        android:src="@drawable/ic_delete_white_24dp"
+                        app:fab_size="mini"
+                        app:fab_colorNormal="@color/colorAccent"/>
+
+            </com.github.clans.fab.FloatingActionMenu>
+
+            <!--<android.support.design.widget.FloatingActionButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/ic_write_white_24dp"
+                        android:id="@+id/EditProfil_floatingActionButton"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/Profil_Image"
+                    app:layout_constraintBottom_toBottomOf="@+id/Profil_Image"
+                    app:layout_constraintStart_toEndOf="@+id/Profil_Image" android:layout_marginStart="20dp">
+                <android.support.constraint.ConstraintLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:id="@+id/Nama_layout">
+                    <TextView
+                            android:text="Nama Bayi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/Profil_NamaBayiView"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:maxWidth="140dp"
+                            android:maxHeight="40dp"
+                            app:layout_constraintStart_toEndOf="@+id/textView2"
+                            android:layout_marginStart="44dp"
+                            app:layout_constraintTop_toTopOf="@+id/textView2"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                            app:layout_constraintVertical_bias="0.0"/>
+                    <TextView
+                            android:text="Nama Bayi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                            android:id="@+id/textView2"/>
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/Tgl_layout"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                >
+                    <TextView
+                            android:text="Tanggal lahir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:id="@+id/textView4"
+                            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView
+                            android:text="DD-MM-YYYY"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/Profil_tglLahriView" android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@+id/textView4"
+                            android:layout_marginStart="28dp"
+                            app:layout_constraintTop_toTopOf="@+id/textView4"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                            android:layout_marginBottom="8dp"/>
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/Umur_layout"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                >
+                    <TextView
+                            android:text="Umur"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:id="@+id/textView5" app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="8dp"/>
+                    <TextView
+                            android:text="99"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/Profil_umurView" android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@+id/textView5"
+                            android:layout_marginStart="79dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="@+id/textView5"
+                            android:layout_marginBottom="8dp"/>
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Jekel_layout"
+                        android:layout_marginVertical="5dp"
+                >
+                    <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jenis Kelamin"
+                            android:textSize="15sp" android:id="@+id/textView6"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+                    <TextView
+                            android:id="@+id/Profil_JekelView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jenis Kelamin"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toEndOf="@+id/textView6" android:layout_marginStart="20dp"
+                            app:layout_constraintTop_toTopOf="@+id/textView6"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                            android:layout_marginBottom="8dp"/>
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.RecyclerView
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:id="@+id/data_imunisasi_recylerViewV2"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/ProfilBayi_cardView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/constraintLayout6">
+    </android.support.v7.widget.RecyclerView>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/constraintLayout6">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/constraintLayout5">
+
+        </android.support.constraint.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:id="@+id/Button_Reminder"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
+                app:layout_constraintStart_toStartOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" app:srcCompat="@drawable/ic_access_alarm_black_24dp"
+                        android:id="@+id/imageView3"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/textView12" android:layout_marginEnd="8dp"/>
+                <TextView
+                        android:text="Reminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView12"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                        app:layout_constraintTop_toTopOf="@+id/imageView3"
+                        tools:text="Reminder"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/Button_Calendar"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp" app:srcCompat="@drawable/ic_calendar_black_24dp"
+                        android:id="@+id/imageView4"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp" app:layout_constraintEnd_toStartOf="@+id/textView13"
+                        android:layout_marginEnd="8dp"/>
+                <TextView
+                        android:text="Calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView13"
+                        tools:text="Calendar"
+                        app:layout_constraintTop_toTopOf="@+id/imageView4"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
