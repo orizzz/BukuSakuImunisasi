@@ -7,14 +7,21 @@
         <item name="colorPrimaryDark">@android:color/holo_red_dark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:navigationBarColor">@color/colorPrimary</item>
-        <item name="android:statusBarColor">@android:color/background_dark</item>
+        <item name="android:statusBarColor">@android:color/black</item>
+
+
     </style>
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
+    <style name="AppTheme.WithActionBar" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/holo_red_dark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@android:color/black</item>
+
+
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="PrimaryFlatButton" parent="Theme.AppCompat.Light">
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless.Colored</item>
@@ -28,13 +35,8 @@
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="colorControlHighlight">#ffa0a0</item>
         <item name="colorAccent">@color/colorPrimary</item>
-
     </style>
 
-    <style name="NumberPickerStyle">
-        <item name="android:textSize">22dp</item>
-        <item name="android:textColorPrimary">@color/colorAccent</item>
-        <item name="android:colorControlNormal" tools:targetApi="lollipop">@color/colorAccent</item>
-    </style>
+
 
 </resources>

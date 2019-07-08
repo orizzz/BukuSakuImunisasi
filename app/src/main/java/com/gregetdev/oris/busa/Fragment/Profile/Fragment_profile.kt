@@ -23,6 +23,7 @@ import com.gregetdev.oris.busa.BayiModel
 import com.gregetdev.oris.busa.HomeMenu
 
 import com.gregetdev.oris.busa.R
+import com.gregetdev.oris.busa.ViewHolder.ListViewHolder
 import com.gregetdev.oris.busa.model.DataImunisasiModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -68,22 +69,15 @@ class Fragment_profile : Fragment() {
 
         table_bayi.child(key).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
-
             }
-
-            @SuppressLint("SetTextI18n")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val profilbayi = dataSnapshot.getValue(BayiModel::class.java)
-
                 NamaBayi = profilbayi?.namaBayi
-
                 Profil_NamaBayiView.text = profilbayi?.namaBayi
                 Profil_tglLahriView.text = profilbayi?.tglLahir
                 Profil_umurView.text = profilbayi?.umur + " Bulan"
                 Profil_JekelView.text = profilbayi?.jekel
-
                 Picasso.get().load(profilbayi?.imageURL).into(Profil_Image)
-
             }
         })
 
@@ -125,34 +119,27 @@ class Fragment_profile : Fragment() {
 
         val data_imunisasi = FirebaseDatabase.getInstance().getReference("/Data Imunisasi/$key")
             .orderByChild("umurPemberian")
-
-
         val options = FirebaseRecyclerOptions.Builder<DataImunisasiModel>()
             .setQuery(data_imunisasi, DataImunisasiModel::class.java)
             .build()
-
-        val adapterFirebase = object : FirebaseRecyclerAdapter<DataImunisasiModel, ListDataImunisasiHolder>(options){
-            override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ListDataImunisasiHolder {
+        val adapterFirebase = object : FirebaseRecyclerAdapter<DataImunisasiModel, ListViewHolder>(options){
+            override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ListViewHolder {
                 val inflater = LayoutInflater.from(parent.context)
                 val view = inflater.inflate(R.layout.view_data_imunisasi,parent,false)
-                return ListDataImunisasiHolder(view)
+                return ListViewHolder(view)
             }
-
-            override fun onBindViewHolder(holder: ListDataImunisasiHolder, position: Int, model: DataImunisasiModel) {
-
+            override fun onBindViewHolder(holder: ListViewHolder, position: Int, model: DataImunisasiModel) {
                 holder.mView.Nama_Imunisasi_view.text = getRef(position).key.toString()
                 holder.mView.Tgl_imunisasi.text = model.Tgl_imunisasi
-
                 if (model.Keterangan == "Sudah"){
-                    holder.mView.centang_view.setImageResource(R.drawable.ic_check_circle_green_24dp)
+                    holder.mView.centang_view
+                        .setImageResource(R.drawable.ic_check_circle_green_24dp)
                 }else {
                     holder.mView.centang_view.visibility = View.INVISIBLE
                 }
-
                 holder.mView.setOnClickListener(){
                     QuestionPopUP(getRef(position).key.toString())
                 }
-
             }
 
             private fun QuestionPopUP(NamaImunisasi: String) {
@@ -161,7 +148,6 @@ class Fragment_profile : Fragment() {
                     .setMessage("Apakah Imunisasi \"$NamaImunisasi\" Sudah dilakukan ? ")
                     .setPositiveButton("Sudah"){dialog, which ->  SetSudahImunisasi(NamaImunisasi)}
                     .setNegativeButton("Belum"){dialog, which -> return@setNegativeButton }
-
                 val dialog: AlertDialog = builder.create()
                 dialog.show()
             }
@@ -169,10 +155,9 @@ class Fragment_profile : Fragment() {
             private fun SetSudahImunisasi(namaImunisasi: String) {
                 val data_imunisasi = FirebaseDatabase.getInstance()
                     .getReference("/Data Imunisasi/$key/$namaImunisasi")
-
                 data_imunisasi.child("keterangan").setValue("Sudah")
-                    .addOnCompleteListener { Toast.makeText(activity,"Data Imunisasi Disimpan",Toast.LENGTH_LONG) }
-                    .addOnCanceledListener { Toast.makeText(activity,"Terjadi kesalahan, Silahkan coba lagi",Toast.LENGTH_LONG) }
+                    .addOnCompleteListener { Toast.makeText(activity,"Data Imunisasi Disimpan",Toast.LENGTH_LONG).show() }
+                    .addOnCanceledListener { Toast.makeText(activity,"Terjadi kesalahan, Silahkan coba lagi",Toast.LENGTH_LONG).show() }
                 startListening()
             }
 
@@ -200,5 +185,4 @@ class Fragment_profile : Fragment() {
 }
 
 
-class ListDataImunisasiHolder(var mView: View) : RecyclerView.ViewHolder(mView)
 

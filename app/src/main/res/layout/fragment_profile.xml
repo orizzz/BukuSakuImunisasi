@@ -63,17 +63,6 @@
 
                 </com.github.clans.fab.FloatingActionMenu>
 
-                <!--<android.support.design.widget.FloatingActionButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        app:srcCompat="@drawable/ic_write_white_24dp"
-                        android:id="@+id/EditProfil_floatingActionButton"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginBottom="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"/>-->
-
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"

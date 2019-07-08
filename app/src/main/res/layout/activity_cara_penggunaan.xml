@@ -10,21 +10,220 @@
     <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/scrollView2">
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/scrollView2"
+            app:layout_constraintVertical_bias="0.0">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
                       android:gravity="center"
                       android:paddingTop="24dp"
-        >
+                      android:paddingLeft="16dp" android:paddingRight="16dp">
             <TextView
                     android:text="Cara Penggunaan\nAplikasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" tools:layout_editor_absoluteY="59dp"
                     tools:layout_editor_absoluteX="176dp" android:id="@+id/textView17"
                     android:fontFamily="@font/asap_bold" android:textSize="24sp" android:textAlignment="center"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView12"
+                    android:text="@string/Tutorial_1"
+                    android:textAlignment="center" android:textSize="15sp" android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+
+            <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" android:padding="12dp"
+                    android:elevation="8dp"
+            android:background="@drawable/calendar_background"
+                    android:layout_marginBottom="8dp">
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                android:id="@+id/exp_t_tambah_data">
+                    <TextView
+                            android:text="Menambah Data Bayi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/textView29"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/asap_bold"
+                            android:textSize="18sp" android:layout_marginStart="16dp"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/expandable_01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:el_expanded="false"
+                    app:el_duration="1000"
+            >
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical" android:id="@+id/t_tambah_data">
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_01"
+                            android:id="@+id/imageView"/>
+                    <TextView
+                            android:text="@string/Tutorial_TD_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView13"
+                            android:textAlignment="viewStart"
+                            android:layout_margin="8dp" android:textSize="15sp"/>
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_02"
+                            android:id="@+id/imageView2"/>
+                    <TextView
+                            android:text="@string/Tutorial_TD_2"
+                            android:textAlignment="viewStart"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView24"
+                            android:layout_margin="8dp" android:textSize="15sp"/>
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_03"
+                            android:id="@+id/imageView3"/>
+                    <TextView
+                            android:text="@string/Tutorial_TD_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView25"
+                            android:textAlignment="viewStart"
+                            android:layout_margin="8dp" android:textSize="15sp"/>
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_04"
+                            android:id="@+id/imageView8"/>
+                    <TextView
+                            android:text="@string/Tutorial_TD_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView26"
+                            android:textAlignment="viewStart"
+                            android:layout_margin="8dp" android:textSize="15sp"/>
+                </LinearLayout>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+            <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" android:padding="12dp"
+                    android:elevation="8dp"
+                    android:background="@drawable/calendar_background"
+                    android:layout_marginBottom="8dp">
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/exp_t_hapus">
+                    <TextView
+                            android:text="Menghapus Data Bayi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/textView40"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/asap_bold"
+                            android:textSize="18sp" android:layout_marginStart="16dp"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/expandable_03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:el_expanded="false"
+                    app:el_duration="1000">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_04_5"
+                            android:id="@+id/imageView10"/>
+                    <TextView
+                            android:text="@string/Tutorial_HD_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView28" android:textSize="15sp"
+                            android:layout_margin="8dp"/>
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_07"
+                            android:id="@+id/imageView13"/>
+                    <TextView
+                            android:text="@string/Tutorial_HD_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView32" android:textSize="15sp"
+                            android:layout_margin="8dp"/>
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_08"
+                            android:id="@+id/imageView14"/>
+                    <TextView
+                            android:text="@string/Tutorial_HD_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView33" android:textSize="15sp"
+                            android:layout_margin="8dp"/>
+                </LinearLayout>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+            <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" android:padding="12dp"
+                    android:elevation="8dp"
+                    android:background="@drawable/calendar_background"
+            android:layout_marginBottom="8dp">
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/exp_t_imunisasi">
+                    <TextView
+                            android:text="Menandai sudah Imunisasi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/textView30"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/asap_bold"
+                            android:textSize="18sp" android:layout_marginStart="16dp"/>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+            <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/expandable_02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:el_expanded="false"
+                    app:el_duration="1000">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:id="@+id/t_sudah_imunisasi">
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_04_5"
+                            android:id="@+id/imageView9"/>
+                    <TextView
+                            android:text="@string/Tutorial_SI_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView27" android:textSize="15sp"
+                            android:layout_margin="8dp"/>
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_05"
+                            android:id="@+id/imageView11"/>
+                    <TextView
+                            android:text="@string/Tutorial_SI_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView30" android:textSize="15sp"
+                            android:layout_margin="8dp"/>
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp" app:srcCompat="@drawable/tutorial_06"
+                            android:id="@+id/imageView12"/>
+                    <TextView
+                            android:text="@string/Tutorial_SI_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/textView31" android:textSize="15sp"
+                            android:layout_margin="8dp"/>
+                </LinearLayout>
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

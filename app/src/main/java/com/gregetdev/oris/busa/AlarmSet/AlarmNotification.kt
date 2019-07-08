@@ -1,20 +1,18 @@
 package com.gregetdev.oris.busa.AlarmSet
 
-import android.app.*
+import android.app.AlarmManager
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.ComponentName
 import android.content.Context
 import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.RingtoneManager
-import android.os.Build
 import android.support.v4.app.NotificationCompat
-import com.gregetdev.oris.busa.HomeMenu
-import com.gregetdev.oris.busa.Profile
-import com.gregetdev.oris.busa.Profile_Bayi.Alarm
 import com.gregetdev.oris.busa.R
 import java.util.*
-import kotlin.reflect.KClass
 
 class AlarmNotification {
     val DAILY_REMINDER_REQUEST_CODE = 100

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
           package="com.gregetdev.oris.busa">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -14,28 +14,30 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:screenOrientation="portrait"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".Informasi_Imunisasi.DetailInformasi">
+            android:theme="@style/AppTheme"
+            tools:replace="android:icon">
+        <activity android:name=".Informasi_Imunisasi.DetailInformasi"
+                  android:parentActivityName=".Informasi_Imunisasi.InformasiImunisasi"
+                  android:theme="@style/AppTheme.WithActionBar">
         </activity>
-        <activity android:name=".Informasi_Imunisasi.InformasiImunisasi">
+        <activity android:name=".Informasi_Imunisasi.InformasiImunisasi"
+                  android:parentActivityName=".HomeMenu"
+                  android:theme="@style/AppTheme.WithActionBar">
         </activity>
-        <activity android:name=".CaraPenggunaan">
+        <activity android:name=".CaraPenggunaan"
+                  android:parentActivityName=".HomeMenu"
+                  android:theme="@style/AppTheme.WithActionBar">
         </activity>
-        <activity android:name=".About">
-        </activity>
-        <activity android:name=".Profile_Bayi.Calendar">
-        </activity>
-        <activity android:name=".Profile_Bayi.ProfileV2">
-        </activity>
-        <activity android:name=".Profile_Bayi.Alarm">
-        </activity>
-        <activity android:name=".DataBayi">
+
+        <activity android:name=".DataBayi"
+        android:parentActivityName=".HomeMenu"
+                  android:theme="@style/AppTheme.WithActionBar">
         </activity>
         <activity android:name=".HomeMenu">
         </activity>
-        <activity
-                android:name=".Profile"
-                android:label="@string/title_activity_profile">
+        <activity android:name=".Profile"
+                  android:parentActivityName=".DataBayi"
+                  android:theme="@style/AppTheme.WithActionBar">
         </activity>
         <activity android:name=".InputDataImunisasi">
         </activity>
@@ -50,7 +52,9 @@
         </activity>
         <activity android:name=".LoginScreen.Daftar">
         </activity>
-        <activity android:name=".AddDataBayi">
+        <activity android:name=".AddDataBayi"
+                  android:parentActivityName=".DataBayi"
+                  android:theme="@style/AppTheme.WithActionBar">
         </activity>
 
         <receiver

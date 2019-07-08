@@ -18,6 +18,9 @@ class DetailInformasi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_informasi)
 
+        val actionBar = supportActionBar
+        actionBar!!.setTitle("")
+
         val key = intent.getStringExtra("InfoKEY").toString()
 
         val Table_info = FirebaseDatabase.getInstance().getReference("/Informasi_imunisasi")
@@ -33,12 +36,6 @@ class DetailInformasi : AppCompatActivity() {
                 Detail_Deskripsi.text = detail?.Deskripsi.toString()
                 Detail_Manfaat.text = detail?.Manfaat.toString()
                 Detail_Efek_samping.text = detail?.EfekSamping.toString()
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    Detail_Deskripsi.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD)
-                    Detail_Manfaat.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD)
-                    Detail_Efek_samping.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD)
-                };
 
             }
 

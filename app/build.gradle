@@ -42,7 +42,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-database:16.0.6'
-    implementation 'com.google.firebase:firebase-firestore:18.0.1'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.firebase:firebase-storage:16.0.5'
 
@@ -59,6 +58,8 @@ dependencies {
     implementation 'com.applandeo:material-calendar-view:1.4.0'
     implementation 'com.github.jakebonk:NotifyMe:1.0.0'
     implementation 'com.github.clans:fab:1.6.4'
+    implementation 'com.race604.waveloading:library:1.1.1'
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
 
 
 }

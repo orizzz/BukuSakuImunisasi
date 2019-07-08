@@ -33,11 +33,13 @@ class Profile : AppCompatActivity() {
         bayiKEY = intent.getStringExtra("BayiKey")
         Log.d("BayiKey","profil : $bayiKEY")
 
+        val actionBar = supportActionBar
+        actionBar!!.setTitle("Profile")
+
         val frag_profile = Fragment_profile.newInstance(bayiKEY)
         val frag_reminder = Fragment_Remider.newInstance(bayiKEY)
         val frag_alarm = Fragment_Alarm.newInstance(bayiKEY)
         setFragment(frag_profile)
-        Judul_Toolbar.text = "Profile bayi"
         navigation.setOnNavigationItemSelectedListener(
             object : BottomNavigationView.OnNavigationItemSelectedListener {
                 @SuppressLint("ResourceAsColor")
@@ -45,18 +47,18 @@ class Profile : AppCompatActivity() {
                     when (item.itemId) {
                         R.id.navigation_Profil_bayi -> {
                             setFragment(frag_profile)
-                            Judul_Toolbar.text = "Profile bayi"
+                            actionBar.setTitle("Profil Bayi")
                             return true
                         }
                         R.id.navigation_Calendar -> {
                             setFragment(frag_reminder)
-                            Judul_Toolbar.text = "Calendar"
+                            actionBar.setTitle("Calendar")
                             return true
                         }
 
                         R.id.navigation_notif -> {
                             setFragment(frag_alarm)
-                            Judul_Toolbar.text = "Alarm"
+                            actionBar.setTitle("Alarm")
                             return true
                         }
                     }
@@ -73,11 +75,7 @@ class Profile : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.home, menu)
-        return true
-    }
+
 
 
 }

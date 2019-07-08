@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".SplashScreen" android:background="@color/colorPrimary">
 
-    <com.eyalbira.loadingdots.LoadingDots
+    <!--<com.eyalbira.loadingdots.LoadingDots
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -16,6 +16,8 @@
             app:LoadingDots_dots_color="@color/White"
             app:LoadingDots_dots_space="8dp"
             app:LoadingDots_jump_height="15dp"
+            app:LoadingDots_jump_duration="200"
+            app:LoadingDots_loop_duration="1000"
 
 
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"
@@ -23,13 +25,15 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.754"
     >
 
-    </com.eyalbira.loadingdots.LoadingDots>
+    </com.eyalbira.loadingdots.LoadingDots>-->
     <ImageView
             android:layout_width="200dp"
             android:layout_height="200dp" app:srcCompat="@drawable/needle_200x200"
-            android:id="@+id/imageView2" android:layout_marginTop="88dp"
+            android:id="@+id/LogoSplash" android:layout_marginTop="88dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.497"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.300"/>
 
 </android.support.constraint.ConstraintLayout>

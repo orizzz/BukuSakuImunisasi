@@ -69,12 +69,9 @@ class Fragment_Remider : Fragment() {
         val data_imunisasi = database.getReference("/Data Imunisasi/$key")
 
         data_imunisasi.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
+            override fun onCancelled(p0: DatabaseError) {}
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-
                 dataSnapshot.children.forEach {
                     val data = it.getValue(DataImunisasiModel::class.java)
                     val calendar = Calendar.getInstance()
@@ -93,24 +90,12 @@ class Fragment_Remider : Fragment() {
                                 set(Calendar.MONTH, month)
                                 set(Calendar.DAY_OF_MONTH, dayOfMonth)
                             }
-
                             event.add(EventDay(calendar,R.mipmap.ic_launcher_srynge))
-
                         }
                     }
-
                 }
                 Reminder_calendarView.setEvents(event)
-                Reminder_calendarView.setOnDayClickListener{
-                    val Clicked = it.calendar
-                    val ReadableDate = getReadableDate(it.calendar).toString()
-                    val data = dataSnapshot.value
 
-
-
-                    Log.d("Calendar","$data")
-
-                }
             }
 
         })

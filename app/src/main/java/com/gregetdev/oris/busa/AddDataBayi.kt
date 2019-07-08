@@ -75,30 +75,14 @@ class AddDataBayi : AppCompatActivity() {
         Perempuan = findViewById(R.id.Perempuan_RadioButton)
         gender = findViewById(R.id.gender_RGrup)
         SelecetedImage = findViewById(R.id.SelecetedImage_ImageVIew)
+        val actionBar = supportActionBar
+        actionBar!!.setTitle("Tambah Data")
 
-
-
-
-        backButton_addDataBayi.setOnClickListener() {
-            val intent = Intent(this@AddDataBayi, DataBayi::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }
-
-
-
-
-        tglLahir_edit.setOnClickListener {
-            openDatePicker()
-        }
-
+        tglLahir_edit.setOnClickListener {openDatePicker()}
         datePicker = findViewById(R.id.datePicker)
-        datePicker.setOnClickListener {
-            openDatePicker()
-        }
+        datePicker.setOnClickListener {openDatePicker()}
 
         TambahDataBtn.setOnClickListener() {
-
             if (Nama_edit.text.toString().isEmpty()) {
                 Nama_edit.error = "Masukan Nama"
                 Nama_edit.requestFocus()
@@ -111,10 +95,7 @@ class AddDataBayi : AppCompatActivity() {
                 Toast.makeText(this@AddDataBayi,"Pilih jenis kelamin",Toast.LENGTH_LONG).show()
             } else{
                 uploadImage()
-
             }
-
-
         }
         SelectPhotoButton.setOnClickListener() {
             val intent = Intent(Intent.ACTION_PICK)
@@ -123,57 +104,37 @@ class AddDataBayi : AppCompatActivity() {
         }
     }
 
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             // proceed and check what the selected image was....
             Log.d("Add Photo", "Photo was selected")
-
             selectedPhotoUri = data.data
-
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
-
             SelecetedImage_ImageVIew.setImageBitmap(bitmap)
             SelectPhotoButton.alpha = 0f
-
         }
     }
 
     private fun TambahData(imageURL: String) {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-
-
         val Table_bayi = database.getReference("/Bayi")
-
-
         val nama = Nama_edit.text.toString()
         val tgl = tglLahir_edit.text.toString()
         val umur = Umur_edit.text.toString()
         val ParentID = auth.uid ?: ""
         val ImageURL = imageURL
         var Jekel = ""
-        if (Laki_RadioButton.isChecked){
-           Jekel = "Laki - Laki"
-        } else if (Perempuan_RadioButton.isChecked){
-            Jekel = "Perempuan"
-        }
-
-
-
-
+        if (Laki_RadioButton.isChecked){ Jekel = "Laki - Laki"}
+        else if (Perempuan_RadioButton.isChecked){ Jekel = "Perempuan" }
         val key = Table_bayi.push().key
         val databayi = BayiModel(nama, tgl, umur, ParentID, ImageURL,Jekel)
         if (key != null) {
             Table_bayi.child(key).setValue(databayi)
                 .addOnCompleteListener() {
                     Log.d("Tambah data bayi", "Data telah disimpan di database")
-
                     AddDataImunisasiAwal(key)
-
                     val intent = Intent(this@AddDataBayi, DataBayi::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
@@ -189,13 +150,11 @@ class AddDataBayi : AppCompatActivity() {
     private fun AddDataImunisasiAwal(key: String) {
         val Data_imunisasi = database.getReference("/Data Imunisasi/$key")
         val Alarm = database.getReference("/Alarm/$key")
-        //val imunisasiKEY = Data_imunisasi.push().key
 
         val Year = calendar.get(Calendar.YEAR)
         var Months = calendar.get(Calendar.MONTH)
         var Day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        Log.d("Calendar","Tgl Imunisasai, $Day/$Months/$Year")
 
         Data_imunisasi.run {
             child("Hepatitis B")
@@ -235,11 +194,8 @@ class AddDataBayi : AppCompatActivity() {
         var MonthsPlus = Months + tambah
         var DaysPlus: String
 
-        if (Day in 1..9){
-            DaysPlus = "0$Day"
-        } else {
-            DaysPlus = "$Day"
-        }
+        if (Day in 1..9){ DaysPlus = "0$Day"
+        } else { DaysPlus = "$Day"}
 
         if (MonthsPlus > 12){
             MonthsPlus -= 12
@@ -260,9 +216,6 @@ class AddDataBayi : AppCompatActivity() {
                 return "$DaysPlus/$MonthsPlus/$Year"
             }
         }
-
-
-
     }
 
     private fun uploadImage() {
@@ -271,8 +224,6 @@ class AddDataBayi : AppCompatActivity() {
             Toast.makeText(this@AddDataBayi, "Tambahkan foto", Toast.LENGTH_LONG).show()
             return
         }
-
-
         val imageName = UUID.randomUUID().toString()
         val ImageStorage = ImageStore.getReference("/Profil/$imageName")
         add_data_loading.visibility = VISIBLE
@@ -293,7 +244,6 @@ class AddDataBayi : AppCompatActivity() {
             }
     }
 
-        @RequiresApi(Build.VERSION_CODES.N)
         private fun openDatePicker() {
 
             val setDateSetListener =

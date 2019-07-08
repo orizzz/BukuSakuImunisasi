@@ -20,7 +20,8 @@ class InformasiImunisasi : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_informasi_imunisasi)
-
+        val actionBar = supportActionBar
+        actionBar!!.setTitle("Informasi Imunisasi")
         TampilListInformasi()
 
     }
