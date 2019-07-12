@@ -1,34 +1,44 @@
 <resources>
     <string name="app_name">BuSa</string>
-    <string name="Tentang1">~ Aplikasi ini ditujukan kepada para orang tua yang memiliki Bayi, diharapkan dengan aplikasi ini pengguna dapat lebih mudah dalam pencatatan dan pengingat dalam melaksanakan imunisasi kepada anaknya.</string>
-    <string name="Tentang2">~ Aplikasi ini dibuat sebagai syarat sidang penulisan Ilmiah Jurusan Teknik Informatika</string>
+    <string name="Tentang1">~ Aplikasi ini ditujukan kepada para orang tua yang memiliki Bayi, diharapkan dengan
+        aplikasi ini pengguna dapat lebih mudah dalam pencatatan dan pengingat dalam melaksanakan imunisasi kepada
+        anaknya.
+    </string>
+    <string name="Tentang2">~ Aplikasi ini dibuat sebagai syarat sidang penulisan Ilmiah Jurusan Teknik Informatika
+    </string>
     <string name="Tentang3">~ Aplikasi ini dirancang dan dikembangkan oleh\n
-        Nama  : Oris Pratama\n
-        NPM   : 55416691\n
+        Nama : Oris Pratama\n
+        NPM : 55416691\n
         Kelas : 3IA18\n
     </string>
     <string name="Belum_ada_data">Belum Ada Data Bayi\nTekan Tombol Dibawah Untuk Menambahkan</string>
 
-    <string name="Tutorial_1">Pastikan perangkat anda terhubung dengan internet agar semua fungsi dapat berjalan dengan baik.</string>
+    <string name="Tutorial_1">Pastikan perangkat anda terhubung dengan internet agar semua fungsi dapat berjalan dengan
+        baik.
+    </string>
 
     <string name="Tutorial_TD_1">
         Untuk menambahkan data bayi, pertama masuk ke menu \'List Data Bayi\'
     </string>
     <string name="Tutorial_TD_2">
-        Jika sebelumnya belum pernah menambahkan data maka data di \'List Data Bayi\' akan kosong. untuk mulai menambahkan tekan tombol kecil pada pojok kanan bawah.
+        Jika sebelumnya belum pernah menambahkan data maka data di \'List Data Bayi\' akan kosong. untuk mulai
+        menambahkan tekan tombol kecil pada pojok kanan bawah.
     </string>
     <string name="Tutorial_TD_3">
-        isikan data pada form pengisian, semua data harus terisi agar bisa melanjutkan. Jika sudah tekan tombol\n \'TAMBAH DATA\'.
+        isikan data pada form pengisian, semua data harus terisi agar bisa melanjutkan. Jika sudah tekan tombol\n
+        \'TAMBAH DATA\'.
     </string>
     <string name="Tutorial_TD_4">
         Jika data berhasil ditambahkan maka data akan tampil di dalam \'List Data Bayi\'.
     </string>
 
     <string name="Tutorial_SI_1">
-        User dapat menandai imunisasi yang telah dilakukan, yang perlu dilakukan adalah memilih imunisasi yang telah dilakukan dari list imunisasi yang ada pada halaman profile.
+        User dapat menandai imunisasi yang telah dilakukan, yang perlu dilakukan adalah memilih imunisasi yang telah
+        dilakukan dari list imunisasi yang ada pada halaman profile.
     </string>
     <string name="Tutorial_SI_2">
-        Setelah memilih akan muncul pop-up yang menanyakan, \'apakah imunisasi sudah dilakukan\' jika sudah dilaksanakan kita pilih \'SUDAH\'
+        Setelah memilih akan muncul pop-up yang menanyakan, \'apakah imunisasi sudah dilakukan\' jika sudah dilaksanakan
+        kita pilih \'SUDAH\'
     </string>
     <string name="Tutorial_SI_3">
         Setelah selesai maka imunisasi yang telah dipilih akan memiliki tanda centang.

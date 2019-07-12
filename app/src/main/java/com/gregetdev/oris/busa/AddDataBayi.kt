@@ -43,7 +43,6 @@ class AddDataBayi : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var ImageStore: FirebaseStorage
-    private lateinit var datePicker: ImageButton
 
     private lateinit var tglLahir_edit: EditText
     private lateinit var Umur_edit: EditText
@@ -79,7 +78,6 @@ class AddDataBayi : AppCompatActivity() {
         actionBar!!.setTitle("Tambah Data")
 
         tglLahir_edit.setOnClickListener {openDatePicker()}
-        datePicker = findViewById(R.id.datePicker)
         datePicker.setOnClickListener {openDatePicker()}
 
         TambahDataBtn.setOnClickListener() {

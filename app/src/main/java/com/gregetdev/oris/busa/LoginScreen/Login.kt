@@ -53,12 +53,12 @@ class Login : AppCompatActivity() {
 
     private fun loginUser() {
         if(EmailLogin.text.toString().isEmpty()){
-            EmailLogin.error = "Masukan Nomor Telepon"
+            EmailLogin.error = "Masukan Email"
             EmailLogin.requestFocus()
             return
         }
         if(PasswordLogin.text.toString().isEmpty()){
-            PasswordLogin.error = "Masukan Email"
+            PasswordLogin.error = "Masukan Password"
             PasswordLogin.requestFocus()
             return
 

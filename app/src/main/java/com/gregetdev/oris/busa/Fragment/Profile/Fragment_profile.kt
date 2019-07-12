@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +20,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.gregetdev.oris.busa.BayiModel
-import com.gregetdev.oris.busa.HomeMenu
+import com.gregetdev.oris.busa.*
 
-import com.gregetdev.oris.busa.R
 import com.gregetdev.oris.busa.ViewHolder.ListViewHolder
 import com.gregetdev.oris.busa.model.DataImunisasiModel
 import com.squareup.picasso.Picasso
@@ -91,8 +90,12 @@ class Fragment_profile : Fragment() {
 
             val dialog: AlertDialog = builder.create()
             dialog.show()
+        }
 
-
+        Profil_edit_actButton.setOnClickListener {
+            val intent = Intent(activity, EditDataBayi::class.java)
+            intent.putExtra("Key",key)
+            startActivity(intent)
         }
 
         TampilDataImunisasi(key)

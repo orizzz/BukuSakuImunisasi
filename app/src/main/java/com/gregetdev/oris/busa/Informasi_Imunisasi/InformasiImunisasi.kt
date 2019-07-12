@@ -28,18 +28,15 @@ class InformasiImunisasi : AppCompatActivity() {
 
     private fun TampilListInformasi() {
         val Table_info = FirebaseDatabase.getInstance().getReference("/Informasi_imunisasi")
-
         val options = FirebaseRecyclerOptions.Builder<InfoModel>()
             .setQuery(Table_info, InfoModel::class.java)
             .build()
-
         val adapterFirebase = object : FirebaseRecyclerAdapter<InfoModel, ListViewHolder>(options){
             override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ListViewHolder {
                 val inflater = LayoutInflater.from(parent.context)
                 val view = inflater.inflate(R.layout.view_informasi_imunisasi,parent,false)
                 return ListViewHolder(view)
             }
-
             override fun onBindViewHolder(holder: ListViewHolder, position: Int, model: InfoModel) {
 
                 holder.mView.Nama_Info_Imunisasi.text = model.Nama_Imunisasi

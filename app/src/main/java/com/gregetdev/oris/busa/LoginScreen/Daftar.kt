@@ -29,7 +29,7 @@ class Daftar : AppCompatActivity(){
 
         daftar.setOnClickListener(){
 
-            var checkConnetion = verifyAvailableNetwork(this@Daftar)
+            val checkConnetion = verifyAvailableNetwork(this@Daftar)
             if (checkConnetion == true){
                 signUp_user()
             } else {

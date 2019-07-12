@@ -53,10 +53,10 @@ class HomeMenu : AppCompatActivity() {
             Log.d("Home","Cara Penggunaan")
             startActivity(intent)
         }
+
     }
 
     private fun AboutDialog() {
-
         val viewGroup = findViewById<ViewGroup>(android.R.id.content)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_about, viewGroup, false)
         val builder = AlertDialog.Builder(this)
