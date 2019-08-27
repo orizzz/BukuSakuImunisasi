@@ -43,17 +43,13 @@ class AddDataBayi : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var ImageStore: FirebaseStorage
-
     private lateinit var tglLahir_edit: EditText
     private lateinit var Umur_edit: EditText
     private lateinit var Nama_edit: EditText
     private lateinit var laki: RadioButton
     private lateinit var Perempuan: RadioButton
     private lateinit var gender: RadioGroup
-
     private lateinit var SelecetedImage: ImageView
-
-
     private lateinit var PicturePic: Button
 
     var selectedPhotoUri: Uri? = null
@@ -155,31 +151,31 @@ class AddDataBayi : AppCompatActivity() {
 
 
         Data_imunisasi.run {
-            child("Hepatitis B")
+            child("1")
                 .setValue(DataImunisasiModel("Hepatitis B",TglImunisasi(0),"Belum","0"))
-            child("BCG, Polio 1")
+            child("2")
                 .setValue(DataImunisasiModel("BCG, Polio 1",TglImunisasi(1),"Belum","1"))
-            child("DPT-HB-Hib 1, Polio 2")
+            child("3")
                 .setValue(DataImunisasiModel("DPT-HB-Hib 1, Polio 2",TglImunisasi(2),"Belum","2"))
-            child("DPT-HB-Hib 2, Polio 3")
+            child("4")
                 .setValue(DataImunisasiModel("PT-HB-Hib 2, Polio 3",TglImunisasi(3),"Belum","3"))
-            child("DPT-HB-Hib 3, Polio 4, IPV")
+            child("5")
                 .setValue(DataImunisasiModel("DPT-HB-Hib 3, Polio 4, IPV",TglImunisasi(4),"Belum","4"))
-            child("Campak")
+            child("6")
                 .setValue(DataImunisasiModel("Campak",TglImunisasi(9),"Belum","9"))
         }
         Alarm.run {
-            child("Hepatitis B")
+            child("1")
                 .setValue(AlarmModel("Hepatitis B",TglImunisasi(0),"--:--",false,"1"))
-            child("BCG, Polio 1")
+            child("2")
                 .setValue(AlarmModel("BCG, Polio 1",TglImunisasi(1),"--:--",false,"2"))
-            child("DPT-HB-Hib 1, Polio 2")
+            child("3")
                 .setValue(AlarmModel("DPT-HB-Hib 1, Polio 2",TglImunisasi(2),"--:--",false,"3"))
-            child("DPT-HB-Hib 2, Polio 3")
+            child("4")
                 .setValue(AlarmModel("PT-HB-Hib 2, Polio 3",TglImunisasi(3),"--:--",false,"4"))
-            child("DPT-HB-Hib 3, Polio 4, IPV")
+            child("5")
                 .setValue(AlarmModel("DPT-HB-Hib 3, Polio 4, IPV",TglImunisasi(4),"--:--",false,"5"))
-            child("Campak")
+            child("6")
                 .setValue(AlarmModel("Campak",TglImunisasi(9),"--:--",false,"6"))
         }
     }

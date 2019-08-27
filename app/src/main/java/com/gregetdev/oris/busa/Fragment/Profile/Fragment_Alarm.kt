@@ -144,7 +144,7 @@ class Fragment_Alarm : Fragment() {
             }
 
             override fun onBindViewHolder(holder: ListDataAlarmHolder, position: Int, model: AlarmModel) {
-                holder.mView.Alarm_keterangan.text = "Imunisasi \n${getRef(position).key.toString()}"
+                holder.mView.Alarm_keterangan.text = "Imunisasi \n${model.Ketarangan_alaram}"
                 holder.mView.Alarm_tgl.text = model.Tgl_alarm
 
             }

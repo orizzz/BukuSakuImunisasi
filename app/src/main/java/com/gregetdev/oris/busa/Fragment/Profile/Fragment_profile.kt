@@ -1,13 +1,12 @@
 package com.gregetdev.oris.busa.Fragment.Profile
 
 
-import android.annotation.SuppressLint
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,13 +15,12 @@ import android.widget.Toast
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.gregetdev.oris.busa.*
+import com.gregetdev.oris.busa.R
 
 import com.gregetdev.oris.busa.ViewHolder.ListViewHolder
+import com.gregetdev.oris.busa.model.AlarmModel
 import com.gregetdev.oris.busa.model.DataImunisasiModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -39,6 +37,9 @@ class Fragment_profile : Fragment() {
 
     private var BayiKey_profile: String? = null
     private var NamaBayi: String? = null
+    private var status = DataImunisasiModel().status
+    private var tanggal = DataImunisasiModel().tgl_imunisasi
+    private var tanggal_alarm = AlarmModel().Tgl_alarm
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,41 +133,156 @@ class Fragment_profile : Fragment() {
                 return ListViewHolder(view)
             }
             override fun onBindViewHolder(holder: ListViewHolder, position: Int, model: DataImunisasiModel) {
-                holder.mView.Nama_Imunisasi_view.text = getRef(position).key.toString()
-                holder.mView.Tgl_imunisasi.text = model.Tgl_imunisasi
-                if (model.Keterangan == "Sudah"){
+                holder.mView.Nama_Imunisasi_view.text = model.nama_Imunisasi
+                holder.mView.Tgl_imunisasi.text = model.tgl_imunisasi
+                if (model.status == "Sudah"){
                     holder.mView.centang_view
                         .setImageResource(R.drawable.ic_check_circle_green_24dp)
                 }else {
                     holder.mView.centang_view.visibility = View.INVISIBLE
                 }
                 holder.mView.setOnClickListener(){
-                    QuestionPopUP(getRef(position).key.toString())
+                    QuestionPopUP(model.nama_Imunisasi.toString(),getRef(position).key.toString())
                 }
             }
 
-            private fun QuestionPopUP(NamaImunisasi: String) {
+            private fun QuestionPopUP(NamaImunisasi: String, index: String) {
                 val builder = AlertDialog.Builder(context!!)
                     .setTitle("Imunisasi")
                     .setMessage("Apakah Imunisasi \"$NamaImunisasi\" Sudah dilakukan ? ")
-                    .setPositiveButton("Sudah"){dialog, which ->  SetSudahImunisasi(NamaImunisasi)}
+                    .setPositiveButton("Sudah"){dialog, which ->  SetSudahImunisasi(index)}
                     .setNegativeButton("Belum"){dialog, which -> return@setNegativeButton }
                 val dialog: AlertDialog = builder.create()
                 dialog.show()
             }
 
-            private fun SetSudahImunisasi(namaImunisasi: String) {
+            private fun SetSudahImunisasi(index: String) {
                 val data_imunisasi = FirebaseDatabase.getInstance()
-                    .getReference("/Data Imunisasi/$key/$namaImunisasi")
-                data_imunisasi.child("keterangan").setValue("Sudah")
-                    .addOnCompleteListener { Toast.makeText(activity,"Data Imunisasi Disimpan",Toast.LENGTH_LONG).show() }
+                    .getReference("/Data Imunisasi/$key/$index")
+                data_imunisasi.child(status.toString()).setValue("Sudah")
+                    .addOnCompleteListener {
+                        Toast.makeText(activity,"Data Imunisasi Disimpan",Toast.LENGTH_LONG).show()
+                        DateChange(index)
+                    }
                     .addOnCanceledListener { Toast.makeText(activity,"Terjadi kesalahan, Silahkan coba lagi",Toast.LENGTH_LONG).show() }
                 startListening()
             }
 
-            override fun startListening() {
-                super.startListening()
+            private fun DateChange(i: String) {
+                val tgl_imunisasi =  FirebaseDatabase.getInstance()
+                    .getReference("/Data Imunisasi/$key")
+                val tgl_Alarm =  FirebaseDatabase.getInstance()
+                    .getReference("/Alarm/$key")
+                val index = i.toInt()
+                if (index == 1){
+                    with(tgl_imunisasi) {
+                        child("1").child(tanggal.toString()).setValue(TglImunisasi(0))
+                        child("2").child(tanggal.toString()).setValue(TglImunisasi(1))
+                        child("3").child(tanggal.toString()).setValue(TglImunisasi(2))
+                        child("4").child(tanggal.toString()).setValue(TglImunisasi(3))
+                        child("5").child(tanggal.toString()).setValue(TglImunisasi(4))
+                        child("6").child(tanggal.toString()).setValue(TglImunisasi(9))
+                    }
+                    with(tgl_Alarm) {
+                        child("1").child(tanggal_alarm).setValue(TglImunisasi(0))
+                        child("2").child(tanggal_alarm).setValue(TglImunisasi(1))
+                        child("3").child(tanggal_alarm).setValue(TglImunisasi(2))
+                        child("4").child(tanggal_alarm).setValue(TglImunisasi(3))
+                        child("5").child(tanggal_alarm).setValue(TglImunisasi(4))
+                        child("6").child(tanggal_alarm).setValue(TglImunisasi(9))
+                    }
+                } else if (index == 2){
+                    with(tgl_imunisasi) {
+                        child("2").child(tanggal.toString()).setValue(TglImunisasi(0))
+                        child("3").child(tanggal.toString()).setValue(TglImunisasi(1))
+                        child("4").child(tanggal.toString()).setValue(TglImunisasi(2))
+                        child("5").child(tanggal.toString()).setValue(TglImunisasi(3))
+                        child("6").child(tanggal.toString()).setValue(TglImunisasi(8))
+                    }
+                    with(tgl_Alarm) {
+                        child("2").child(tanggal_alarm).setValue(TglImunisasi(0))
+                        child("3").child(tanggal_alarm).setValue(TglImunisasi(1))
+                        child("4").child(tanggal_alarm).setValue(TglImunisasi(2))
+                        child("5").child(tanggal_alarm).setValue(TglImunisasi(3))
+                        child("6").child(tanggal_alarm).setValue(TglImunisasi(8))
+                    }
+                }else if (index == 3){
+                    with(tgl_imunisasi) {
+                        child("3").child(tanggal.toString()).setValue(TglImunisasi(0))
+                        child("4").child(tanggal.toString()).setValue(TglImunisasi(1))
+                        child("5").child(tanggal.toString()).setValue(TglImunisasi(2))
+                        child("6").child(tanggal.toString()).setValue(TglImunisasi(7))
+                    }
+                    with(tgl_Alarm) {
+                        child("3").child(tanggal_alarm).setValue(TglImunisasi(0))
+                        child("4").child(tanggal_alarm).setValue(TglImunisasi(1))
+                        child("5").child(tanggal_alarm).setValue(TglImunisasi(2))
+                        child("6").child(tanggal_alarm).setValue(TglImunisasi(7))
+                    }
+                }else if (index == 4){
+                    with(tgl_imunisasi) {
+                        child("4").child(tanggal.toString()).setValue(TglImunisasi(0))
+                        child("5").child(tanggal.toString()).setValue(TglImunisasi(1))
+                        child("6").child(tanggal.toString()).setValue(TglImunisasi(6))
+                    }
+                    with(tgl_Alarm) {
+                        child("4").child(tanggal_alarm).setValue(TglImunisasi(0))
+                        child("5").child(tanggal_alarm).setValue(TglImunisasi(1))
+                        child("6").child(tanggal_alarm).setValue(TglImunisasi(6))
+                    }
+                }else if (index == 5){
+                    with(tgl_imunisasi) {
+                        child("5").child(tanggal.toString()).setValue(TglImunisasi(0))
+                        child("6").child(tanggal.toString()).setValue(TglImunisasi(5))
+                    }
+                    with(tgl_Alarm) {
+                        child("5").child(tanggal_alarm).setValue(TglImunisasi(0))
+                        child("6").child(tanggal_alarm).setValue(TglImunisasi(5))
+                    }
+                }else if (index == 6){
+                    with(tgl_imunisasi) {
+                        child("6").child(tanggal.toString()).setValue(TglImunisasi(0))
+                    }
+                    with(tgl_Alarm) {
+                        child("6").child(tanggal_alarm).setValue(TglImunisasi(0))
+                    }
+                }
             }
+            private fun TglImunisasi(tambah: Long): String {
+                val calendar = Calendar.getInstance()
+                var Year = calendar.get(Calendar.YEAR)
+                var Months = calendar.get(Calendar.MONTH) + 1
+                var Day = calendar.get(Calendar.DAY_OF_MONTH)
+
+                var MonthsPlus = Months + tambah
+                var DaysPlus: String
+
+                if (Day in 1..9){ DaysPlus = "0$Day"
+                } else { DaysPlus = "$Day"}
+
+                if (MonthsPlus > 12){
+                    MonthsPlus -= 12
+                    Year += 1
+                    if(MonthsPlus in 1..9) {
+                        Log.d("Calendar","$Day/0$MonthsPlus/$Year")
+                        return "$DaysPlus/0$MonthsPlus/$Year"
+                    } else {
+                        Log.d("Calendar","$Day/$MonthsPlus/$Year")
+                        return "$DaysPlus/$MonthsPlus/$Year"
+                    }
+                } else {
+                    if(MonthsPlus in 1..9) {
+                        Log.d("Calendar","$Day/0$MonthsPlus/$Year")
+                        return "$DaysPlus/0$MonthsPlus/$Year"
+                    } else {
+                        Log.d("Calendar","$Day/$MonthsPlus/$Year")
+                        return "$DaysPlus/$MonthsPlus/$Year"
+                    }
+                }
+            }
+
+
+
         }
         adapterFirebase.startListening()
         data_imunisasi_recylerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)

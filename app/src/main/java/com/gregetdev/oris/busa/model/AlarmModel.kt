@@ -2,11 +2,11 @@ package com.gregetdev.oris.busa.model
 
 class AlarmModel {
 
-    var Ketarangan_alaram : String = ""
-    var Tgl_alarm : String = ""
-    var Waktu_alarm : String = ""
+    var Ketarangan_alaram : String = "ketarangan_alaram"
+    var Tgl_alarm : String = "tgl_alarm"
+    var Waktu_alarm : String = "waktu_alarm"
     var Status : Boolean = false
-    var urutan : String = ""
+    var urutan : String = "urutan"
 
     constructor()
     constructor(Ketarangan_alaram: String, Tgl_alarm: String, Waktu_alarm: String, Status: Boolean, urutan: String) {

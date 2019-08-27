@@ -39,14 +39,13 @@
                 android:parentActivityName=".HomeMenu"
                 android:theme="@style/AppTheme.WithActionBar">
         </activity>
-        <activity android:name=".HomeMenu">
+        <activity android:name=".HomeMenu"
+        android:launchMode="singleTop">
         </activity>
         <activity
                 android:name=".Profile"
                 android:parentActivityName=".DataBayi"
                 android:theme="@style/AppTheme.WithActionBar">
-        </activity>
-        <activity android:name=".InputDataImunisasi">
         </activity>
         <activity android:name=".SplashScreen">
             <intent-filter>

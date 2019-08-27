@@ -6,7 +6,6 @@ package com.gregetdev.oris.busa.Fragment.Profile
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,8 +75,8 @@ class Fragment_Remider : Fragment() {
                     val data = it.getValue(DataImunisasiModel::class.java)
                     val calendar = Calendar.getInstance()
                     if (data != null) {
-                        if (data.Tgl_imunisasi != null) {
-                            val tanggal = data.Tgl_imunisasi.toString()
+                        if (data.tgl_imunisasi != null) {
+                            val tanggal = data.tgl_imunisasi.toString()
                             val delimiter = "/"
                             val part = tanggal.split(delimiter)
 
